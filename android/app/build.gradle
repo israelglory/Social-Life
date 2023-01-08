@@ -26,6 +26,7 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
+
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
@@ -51,6 +52,24 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+    }
+
+    flavorDimensions "default"
+    productFlavors { 
+        produ {
+            dimension "default"
+            applicationIdSuffix ""  
+        }
+        stg {
+            dimension "default"
+            applicationIdSuffix ".stg"
+            resValue "string", "app_name", "Staging SocialLife"
+        }        
+        dev {
+            dimension "default"
+            applicationIdSuffix ".dev"
+            resValue "string", "app_name", "Dev SocialLife"
+        }
     }
 
     buildTypes {
